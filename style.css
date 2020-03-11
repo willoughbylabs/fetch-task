@@ -1,0 +1,15 @@
+:root {
+    --yellow: #E2F1AF;
+    --green: #339989;
+    --purple: #34203D;
+    --pink: #AA5582;
+    --fuscia: #A32262;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+  list-style: none;
+}

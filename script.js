@@ -1,3 +1,16 @@
+// add.value to local store data-tasks array for holding tasks
+// retrive data-tasks[]
+// for loop every element and print tasks
+// on tasks delete, remove element from data-tasks array
+
+// load stored tasks from local storage
+let storedTasks = JSON.parse(localStorage.getItem("stored-tasks"));
+if (storedTasks === null) {
+    storedTasks = [];
+    localStorage.setItem("stored-tasks", JSON.stringify(storedTasks));
+}
+
+// add new tasks
 let addTaskForm = document.querySelector("#addTaskForm");
 let toDoSection = document.querySelector("#toDos ul")
 let add = document.querySelector("#add");
@@ -14,6 +27,13 @@ function addTask(e) {
     checkbox.classList.add("markDone");
     deleteTask.setAttribute("type", "button");
     deleteTask.classList.add("delete");
+    // save to local storage
+    let dataTask = {
+        id: (storedTasks.length),
+        task: add.value
+    }
+    storedTasks.push(dataTask);
+    localStorage.setItem("stored-tasks", JSON.stringify(storedTasks));
     // append to ToDos section
     toDoSection.append(toDo);
     toDo.innerText = add.value;
@@ -21,20 +41,19 @@ function addTask(e) {
     toDo.append(deleteTask);
 }
 
-// add new task on submit
+// add task on submit
 addTaskForm.addEventListener("submit", addTask);
 
-
+// task options
 toDoSection.addEventListener("click", function(e) {
     let target = e.target;
     console.log(target);
-    // delete a task
+    // delete task
     if (target.className === "delete") {
         console.log("delete");
     }
-    // mark a task complete
+    // mark task complete
     if (target.className === "markDone") {
         console.log("done");
     }
 });
-

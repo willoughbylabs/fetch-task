@@ -75,6 +75,7 @@ toDoSection.addEventListener("click", function(e) {
         storedTasks.splice(index, 1);
         console.log(storedTasks);
         localStorage.setItem("stored-tasks", JSON.stringify(storedTasks));
+        target.parentElement.remove();
     }
     // mark task complete
     if (target.className === "markDone") {

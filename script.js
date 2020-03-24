@@ -25,6 +25,10 @@ else {
             toDo.setAttribute("data-id", storedTasks[i].id);
             toDo.prepend(checkbox);
             toDo.append(deleteTask);
+            if (storedTasks[i].status === "completed") {
+                toDo.classList.add("completed");
+                checkbox.checked = true;
+            }
         }
         printTask();
     }
@@ -64,22 +68,31 @@ addTaskForm.addEventListener("submit", addTask);
 // task options
 toDoSection.addEventListener("click", function(e) {
     let target = e.target;
-    console.log(target);
     // delete task
     if (target.className === "delete") {
         let id = target.parentElement.getAttribute("data-id");
-        console.log(id);
         storedTasks = JSON.parse(localStorage.getItem("stored-tasks"));
         let index = storedTasks.findIndex(task => task.id == id);
-        console.log(index);
         storedTasks.splice(index, 1);
-        console.log(storedTasks);
         localStorage.setItem("stored-tasks", JSON.stringify(storedTasks));
         target.parentElement.remove();
     }
     // mark task complete
     if (target.className === "markDone") {
-        target.parentElement.classList.toggle("completed");
-        console.log(target.parentElement);
+        let id = target.parentElement.getAttribute("data-id");
+        if (target.parentElement.classList.contains("completed")) {
+            storedTasks = JSON.parse(localStorage.getItem("stored-tasks"));
+            let index = storedTasks.findIndex(task => task.id == id);
+            delete storedTasks[index].status;
+            localStorage.setItem("stored-tasks", JSON.stringify(storedTasks));
+            target.parentElement.classList.toggle("completed");
+        }
+        else {
+            target.parentElement.classList.toggle("completed");
+            storedTasks = JSON.parse(localStorage.getItem("stored-tasks"));
+            let index = storedTasks.findIndex(task => task.id == id);
+            storedTasks[index].status = "completed";
+            localStorage.setItem("stored-tasks", JSON.stringify(storedTasks));
+        } 
     }
 });

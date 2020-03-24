@@ -1,20 +1,36 @@
-// add.value to local store data-tasks array for holding tasks
-// retrive data-tasks[]
-// for loop every element and print tasks
-// on tasks delete, remove element from data-tasks array
+// declare global variabes
+let addTaskForm = document.querySelector("#addTaskForm");
+let toDoSection = document.querySelector("#toDos ul")
+let add = document.querySelector("#add");
 
-// load stored tasks from local storage
+// load and print tasks from local storage
 let storedTasks = JSON.parse(localStorage.getItem("stored-tasks"));
 if (storedTasks === null) {
     storedTasks = [];
     localStorage.setItem("stored-tasks", JSON.stringify(storedTasks));
 }
+else {
+    for (let i = 0; i < storedTasks.length; i++) {
+        function printTask() {
+            let toDo = document.createElement("li");
+            let checkbox = document.createElement("input");
+            let deleteTask = document.createElement("input");
+            toDo.classList.add("task");
+            checkbox.setAttribute("type", "checkbox");
+            checkbox.classList.add("markDone");
+            deleteTask.setAttribute("type", "button");
+            deleteTask.classList.add("delete");
+            toDoSection.append(toDo);
+            toDo.innerText = storedTasks[i].task;
+            toDo.setAttribute("data-id", storedTasks[i].id);
+            toDo.prepend(checkbox);
+            toDo.append(deleteTask);
+        }
+        printTask();
+    }
+}
 
 // add new tasks
-let addTaskForm = document.querySelector("#addTaskForm");
-let toDoSection = document.querySelector("#toDos ul")
-let add = document.querySelector("#add");
-
 function addTask(e) {
     e.preventDefault();
     // create to-do elements

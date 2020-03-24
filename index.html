@@ -4,21 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500&display=swap" rel="stylesheet"> 
     <title>Fetch - Task List</title>
 </head>
 <body>
-    <h1>FETCH</h1>
-    <h2>a to-do list that makes fetch happen</h2>
-    <form action="" id="addTaskForm">
-        <label for="addTask"></label>
-        <input type="text" id="add" placeholder="Add new task...">
-        <input type="submit" value="Add">
-    </form>
-    <section id="toDos">
-        <ul>
-        
-        </ul>
-    </section>
+    <div class="container">
+        <h1>FETCH</h1>
+        <h2>a to-do list to make fetch happen</h2>
+        <div class="container">
+            <form action="" id="addTaskForm">
+                <label for="addTask"></label>
+                <input type="text" id="add" placeholder="Add new task...">
+                <input type="submit" value="Add">
+            </form>
+        </div> <!-- end container -->
+        <div class="task-container">
+            <section id="toDos">
+                <ul>
+                
+                </ul>
+            </section>
+        </div> <!-- end container -->
+    </div> <!-- end container -->
+    
     <script src="script.js"></script>
 </body>
 </html>

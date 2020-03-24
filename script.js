@@ -19,6 +19,7 @@ else {
             checkbox.setAttribute("type", "checkbox");
             checkbox.classList.add("markDone");
             deleteTask.setAttribute("type", "button");
+            deleteTask.setAttribute("value", "X");
             deleteTask.classList.add("delete");
             toDoSection.append(toDo);
             toDo.innerText = storedTasks[i].task;
@@ -46,6 +47,7 @@ function addTask(e) {
     checkbox.setAttribute("type", "checkbox");
     checkbox.classList.add("markDone");
     deleteTask.setAttribute("type", "button");
+    deleteTask.setAttribute("value", "X");
     deleteTask.classList.add("delete");
     // save to local storage
     let dataTask = {
@@ -60,6 +62,7 @@ function addTask(e) {
     toDo.innerText = add.value;
     toDo.prepend(checkbox);
     toDo.append(deleteTask);
+    addTaskForm.reset();
 }
 
 // add task on submit

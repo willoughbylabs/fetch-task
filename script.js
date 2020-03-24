@@ -32,6 +32,7 @@ function addTask(e) {
         id: (storedTasks.length),
         task: add.value
     }
+    toDo.setAttribute("data-id", dataTask.id);
     storedTasks.push(dataTask);
     localStorage.setItem("stored-tasks", JSON.stringify(storedTasks));
     // append to ToDos section
@@ -50,7 +51,14 @@ toDoSection.addEventListener("click", function(e) {
     console.log(target);
     // delete task
     if (target.className === "delete") {
-        console.log("delete");
+        let id = target.parentElement.getAttribute("data-id");
+        console.log(id);
+        storedTasks = JSON.parse(localStorage.getItem("stored-tasks"));
+        let index = storedTasks.findIndex(task => task.id == id);
+        console.log(index);
+        storedTasks.splice(index, 1);
+        console.log(storedTasks);
+        localStorage.setItem("stored-tasks", JSON.stringify(storedTasks));
     }
     // mark task complete
     if (target.className === "markDone") {

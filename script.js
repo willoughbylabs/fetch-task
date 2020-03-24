@@ -78,6 +78,7 @@ toDoSection.addEventListener("click", function(e) {
     }
     // mark task complete
     if (target.className === "markDone") {
-        console.log("done");
+        target.parentElement.classList.toggle("completed");
+        console.log(target.parentElement);
     }
 });
